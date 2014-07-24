@@ -67,6 +67,7 @@ class UsersController extends \BaseController {
 		
 		$newUser = User::create($dataUser);
 		if($newUser){
+			$dataUserDetails['user_id'] = $newUser->id;
 			$userDetails = UsersDetails::create($dataUserDetails);
 			if($userDetails){
 			Auth::login($newUser);
