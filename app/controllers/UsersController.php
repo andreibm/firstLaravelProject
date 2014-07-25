@@ -67,11 +67,16 @@ class UsersController extends \BaseController {
 		
 		$newUser = User::create($dataUser);
 		if($newUser){
-			$dataUserDetails['user_id'] = $newUser->id;
+			//$userId=array('user_id' => $newUser->id);
 			$userDetails = UsersDetails::create($dataUserDetails);
-			if($userDetails){
-			Auth::login($newUser);
-			return Redirect::route('profile');
+			//var_dump(User::find($newUser->id));
+			if($userDetails){				
+				
+				$userDetails->user()->associate(User::find($newUser->id));
+				$userDetails->save();
+				
+				Auth::login($newUser);
+				return Redirect::route('profile');
 			}
 		}
 		

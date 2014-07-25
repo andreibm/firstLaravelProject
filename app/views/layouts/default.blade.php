@@ -11,9 +11,13 @@
     <div id="bs-example-navbar-collapse-1" class="collapse navbar-collapse">
 	   <ul class="nav navbar-nav navbar-right">
 		 @if (Auth::check())
-
+		 
+		{{--*/
+			$userDetails = User::find(Auth::user()->id)->userDetails;
+			View::share('userDetails',$userDetails);
+		/*--}}
 		<li><a href="/logout">Log Out</a></li>
-		<li><a href="/profile">{{ Auth::user()->first_name }}</a></li>
+		<li><a href="/profile">{{ $userDetails->first_name }}</a></li>
 		@else
 	    <li><a href="/login">Login</a></li>
 		<li><a href="/user/create">Sign Up</a></li>

@@ -2,12 +2,19 @@
 @section('body')
 <div class="container">
     <div>
+          	
         @if(Auth::check())
-            <p>Welcome to your profile page {{Auth::user()->first_name}} - {{Auth::user()->last_name}}</p>
+       		{{--*/
+				$userDetails = User::find(Auth::user()->id)->userDetails;
+			/*--}}
+            <p>Welcome to your profile page {{$userDetails->first_name}} - {{$userDetails->last_name}}</p>
+            
+            {{--var_dump($userDetails);--}}
+            
         @endif
         
-        {{ $user = User::find(Auth::user()->id)->userDetails;}}
-        {{var_dump($user);}}
+        
+        
     </div>
 </div>
 @stop
